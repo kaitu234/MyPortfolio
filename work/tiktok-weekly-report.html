@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campaign Performance Report — Tuần 24 Jun'26 | Ecomobi Media</title>
+<style>
+  :root {
+    --navy: #1a1a2e;
+    --navy2: #16213e;
+    --green: #1e6f3e;
+    --green-light: #d3f9d8;
+    --green-mid: #40c057;
+    --yellow: #e67700;
+    --yellow-light: #fff3bf;
+    --red: #c92a2a;
+    --red-light: #ffe3e3;
+    --blue: #1971c2;
+    --blue-light: #e7f5ff;
+    --gray: #6c757d;
+    --gray-light: #f4f4f8;
+    --border: #e0e0ee;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
+    background: #eef0f6;
+    color: var(--navy);
+    padding: 24px 32px;
+  }
+  .container { max-width: 1600px; margin: 0 auto; width: 100%; }
+
+  /* ─── HEADER ─── */
+  .rp-header {
+    background: #010101;
+    border-radius: 14px;
+    padding: 22px 28px;
+    margin-bottom: 24px;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .rp-header::before {
+    content: "";
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(105,201,208,.18) 0%, rgba(254,44,85,.12) 60%, transparent 80%);
+    pointer-events: none;
+  }
+  .rp-header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: relative; }
+  .rp-org { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .75; margin-bottom: 5px; }
+  .rp-title { font-size: 20px; font-weight: 800; line-height: 1.2; }
+  .rp-sub { font-size: 12px; opacity: .5; margin-top: 4px; }
+  .rp-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .rp-week { font-size: 13px; font-weight: 800; background: linear-gradient(135deg, #69c9d0 0%, #fe2c55 100%); padding: 5px 16px; border-radius: 20px; white-space: nowrap; letter-spacing: .05em; color: #fff; }
+  .rp-date { font-size: 11px; opacity: .75; text-align: right; margin-top: 2px; }
+  .rp-divider { height: 1px; background: rgba(255,255,255,.15); margin: 16px 0; }
+  .rp-meta { display: flex; gap: 28px; flex-wrap: wrap; position: relative; }
+  .rp-meta-item { font-size: 12px; opacity: .85; color: #fff; }
+  .rp-meta-item strong { opacity: 1; font-weight: 700; color: #fff; }
+
+  /* ─── SECTION ─── */
+  .section { margin-bottom: 2rem; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    background: #010101;
+    color: #fff;
+    border-radius: 10px;
+    padding: 11px 18px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .section-header::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #69c9d0 0%, #fe2c55 100%);
+    border-radius: 10px 0 0 10px;
+  }
+  .section-header::after {
+    content: "";
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(105,201,208,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .section-num {
+    background: linear-gradient(135deg, #69c9d0 0%, #fe2c55 100%);
+    color: #fff;
+    width: 26px; height: 26px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800; flex-shrink: 0;
+  }
+  .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; }
+
+  .sub-label {
+    font-size: 11px; font-weight: 700; color: var(--gray);
+    margin: 18px 0 8px; text-transform: uppercase; letter-spacing: .06em;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .sub-label::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+  .l1-tag {
+    font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    color: #fff; background: #010101;
+    padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px;
+    border: 1px solid #333;
+  }
+  .l2-h {
+    font-size: 13px; font-weight: 700; color: #010101;
+    padding: 5px 0 5px 12px;
+    border-left: 3px solid;
+    border-image: linear-gradient(180deg, #69c9d0, #fe2c55) 1;
+    margin: 14px 0 8px;
+  }
+
+  /* ─── PACE BAR ─── */
+  .pace-wrap {
+    background: linear-gradient(135deg,#1864ab 0%,#1971c2 100%);
+    border-radius: 10px; padding: 10px 16px; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 2px 8px rgba(25,113,194,.35);
+    border: 1.5px solid #4dabf7;
+  }
+  .pace-label { font-size: 12px; font-weight: 900; color: #fff; white-space: nowrap; text-transform: uppercase; letter-spacing: .07em; text-shadow: 0 1px 3px rgba(0,0,0,.3); }
+  .pace-track { flex: 1; background: rgba(0,0,0,.28); border-radius: 6px; height: 18px; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.2); }
+  .pace-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg,#69c9d0,#4ec9d4); border-right: 3px dashed rgba(255,255,255,.9); }
+  .pace-note { font-size: 12px; color: #fff; font-weight: 900; white-space: nowrap; text-shadow: 0 1px 3px rgba(0,0,0,.3); }
+
+  /* ─── CAMP CARD ─── */
+  .camp-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
+    border-left: 4px solid transparent;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  }
+  .cc-on    { border-left-color: var(--green-mid); }
+  .cc-watch { border-left-color: #fab005; }
+  .cc-info  { border-left-color: var(--blue); }
+  .cc-pend  { border-left-color: #adb5bd; }
+  .cc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .cc-name { font-size: 13px; font-weight: 700; color: var(--navy); flex: 1; display: flex; align-items: center; gap: 7px; }
+  .brand-logo { width: 24px; height: 24px; border-radius: 6px; object-fit: contain; background: #fff; padding: 2px; box-shadow: 0 1px 4px rgba(0,0,0,.15); flex-shrink: 0; }
+  .brand-avatar { width: 24px; height: 24px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 900; color: #fff; flex-shrink: 0; letter-spacing: -.5px; }
+  .cc-date { font-size: 11px; color: #7a4f00; background: #fef3c7; border: 1px solid #f59e0b; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .cc-date::before { content: "Cut-off: "; font-weight: 700; color: #92400e; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .bon   { background: var(--green-light); color: var(--green); }
+  .bwatch{ background: var(--yellow-light); color: var(--yellow); }
+  .bpend { background: #f1f3f5; color: #495057; }
+  .binfo { background: var(--blue-light); color: var(--blue); }
+  .boff  { background: #ffe3e3; color: #c92a2a; }
+  .broi-over  { background: #d3f9d8; color: #1e6f3e; border: 1px solid #8ce99a; }
+  .broi-under { background: #ffe3e3; color: #c92a2a; border: 1px solid #ffa8a8; }
+  .broi-watch { background: #fff3bf; color: #e67700; border: 1px solid #ffe066; }
+  .broi-up    { background: #e7f5ff; color: #1971c2; border: 1px solid #a5d8ff; }
+  .sig { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: middle; flex-shrink: 0; }
+  .sig-g { background: var(--green-mid); }
+  .sig-y { background: #fab005; }
+
+  /* ─── PROGRESS BARS ─── */
+  .prog-wrap { margin-bottom: 10px; }
+  .prog-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+  .prog-lbl  { font-size: 10px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; }
+  .prog-nums { font-size: 11px; color: #555; font-weight: 600; }
+  .prog-nums strong { color: var(--navy); font-weight: 800; font-size: 12px; }
+  .prog-track { background: var(--gray-light); border-radius: 6px; height: 22px; position: relative; overflow: hidden; }
+  .prog-fill  { height: 100%; border-radius: 6px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 800; color: #fff; min-width: 42px; }
+  .fill-g  { background: linear-gradient(90deg,#2f9e44,#51cf66); }        /* > runrate */
+  .fill-lb { background: linear-gradient(90deg,#1971c2,#74c0fc); }        /* within 5% below */
+  .fill-o  { background: linear-gradient(90deg,#d9480f,#ff922b); }        /* within 8% below */
+  .fill-r  { background: linear-gradient(90deg,#c92a2a,#ff6b6b); }        /* > 8% below */
+  .pace-marker { position: absolute; left: 36.67%; top: 0; bottom: 0; width: 2px; background: rgba(25,113,194,.75); z-index: 2; }
+  .pace-marker::after { content: "MTD 36.7%"; position: absolute; top: -17px; left: 3px; font-size: 9px; color: var(--blue); font-weight: 800; white-space: nowrap; }
+  .prog-right { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--gray); }
+
+  /* ─── KPI ROW ─── */
+  .kpi-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 10px; padding: 9px 12px; background: var(--gray-light); border-radius: 8px; }
+  .kpi { display: flex; flex-direction: column; }
+  .kpi-lbl { font-size: 10px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+  .kpi-val { font-size: 15px; font-weight: 800; color: var(--navy); line-height: 1.2; }
+  .kpi-val.g { color: var(--green); }
+  .kpi-val.w { color: var(--yellow); }
+
+  /* ─── 2-COL BODY ─── */
+  .cc-body { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 12px; }
+  .divv { background: var(--border); }
+  .col-lbl { display: inline-block; font-size: 10px; font-weight: 800; color: #6741d9; background: #f0ebff; border-radius: 20px; padding: 2px 10px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+  .hl { font-size: 12px; color: #444; line-height: 1.65; }
+  .hl-li { margin-bottom: 2px; }
+
+  /* ─── TOTAL BAR ─── */
+  .total-wrap { margin-bottom: 14px; background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,.04); }
+  .total-meta { display: flex; justify-content: space-between; margin-bottom: 6px; flex-wrap: wrap; gap: 4px; align-items: baseline; }
+  .total-lbl  { font-size: 12px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: .05em; }
+  .total-nums { font-size: 11px; color: var(--gray); }
+  .total-nums strong { color: var(--navy); font-weight: 700; }
+  .total-track { background: var(--gray-light); border-radius: 8px; height: 28px; position: relative; overflow: hidden; }
+  .total-fill  { height: 100%; border-radius: 8px; display: flex; align-items: center; padding-left: 10px; font-size: 12px; font-weight: 800; color: #fff; }
+  .total-right { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--gray); font-weight: 600; }
+
+  /* ─── SIGNAL CARD ─── */
+  .signal-card {
+    border: 1px solid #b2f2bb; border-radius: 12px;
+    padding: 11px 14px; margin-bottom: 8px;
+    background: #f8fff9;
+    border-left: 4px solid var(--green-mid);
+    display: flex; align-items: flex-start; gap: 10px;
+  }
+  .sc-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .sc-content {}
+  .sc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+  .sc-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .sc-note { font-size: 12px; color: var(--green); font-weight: 500; }
+
+  /* ─── ISSUE ─── */
+  .issue-wrap { border-radius: 12px; overflow: hidden; margin-bottom: 8px; border: 1px solid var(--border); }
+  .issue-item {
+    font-size: 12.5px; color: #444; line-height: 1.65;
+    padding: 10px 14px 10px 44px; position: relative;
+    border-bottom: 1px solid var(--border); background: var(--white);
+  }
+  .issue-item:last-child { border-bottom: none; }
+  .issue-icon { position: absolute; left: 12px; top: 10px; font-size: 16px; }
+  .issue-item strong { color: var(--navy); font-weight: 700; }
+
+  /* ═══════════════════════════════════════
+     NEXT STEPS — redesigned
+  ═══════════════════════════════════════ */
+
+  /* ABC blocks */
+  .ns-group {
+    margin-bottom: 14px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(0,0,0,.10);
+    border: 1.5px solid rgba(0,0,0,.08);
+  }
+  .ns-group-header {
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(90deg, #0d1b2a 0%, #1a2f4a 100%);
+    color: #fff; padding: 11px 16px;
+  }
+  .ns-group-letter {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg,#69c9d0,#fe2c55);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 900; flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  }
+  .ns-group-title { font-size: 13px; font-weight: 700; letter-spacing: .01em; }
+  .ns-group-tag { margin-left: auto; font-size: 11px; font-weight: 700; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2); padding: 3px 12px; border-radius: 20px; white-space: nowrap; }
+  .ns-group-body {
+    background: #fff;
+    border-top: 3px solid #69c9d0;
+    padding: 14px 18px;
+  }
+  .ns-li { font-size: 12.5px; color: #444; line-height: 1.75; margin-bottom: 4px; display: flex; align-items: flex-start; gap: 8px; }
+  .ns-li::before { content: "→"; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .ns-li strong { color: var(--navy); }
+  .ns-li .done { color: var(--green); font-weight: 700; }
+  .pos-m { color: #2b8a3e; font-weight: 700; }
+  .neg-m { color: #c92a2a; font-weight: 700; }
+
+  /* Takeaway cards (Key Takeaway style like ref image) */
+  .takeaway-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .takeaway-card {
+    border-radius: 12px; padding: 16px 16px 14px;
+    display: flex; align-items: flex-start; gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .tc-green { background: linear-gradient(135deg,#f0fff4,#d3f9d8); border: 1px solid #b2f2bb; }
+  .tc-blue  { background: linear-gradient(135deg,#f0f8ff,#e7f5ff); border: 1px solid #a5d8ff; }
+  .tc-orange{ background: linear-gradient(135deg,#fff9f0,#fff3bf); border: 1px solid #ffe066; }
+  .takeaway-icon-wrap {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .iw-green  { background: var(--green-light); }
+  .iw-blue   { background: var(--blue-light); }
+  .iw-orange { background: var(--yellow-light); }
+  .takeaway-body {}
+  .takeaway-num { font-size: 11px; font-weight: 700; color: var(--gray); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .05em; }
+  .takeaway-title { font-size: 13px; font-weight: 800; color: var(--navy); margin-bottom: 4px; line-height: 1.3; }
+  .takeaway-desc { font-size: 11.5px; color: #555; line-height: 1.5; }
+
+  /* Launch cards */
+  .launch-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  .launch-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  }
+  .lc-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .lc-icon { font-size: 18px; display:flex; align-items:center; }
+  .lc-logo { width:28px; height:28px; border-radius:6px; object-fit:contain; background:#fff; padding:2px; box-shadow:0 1px 4px rgba(0,0,0,.15); flex-shrink:0; }
+  .lc-name { font-size: 13px; font-weight: 700; color: var(--navy); flex: 1; }
+  .lc-pics { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pic-pill { font-size: 11px; padding: 3px 9px; background: var(--gray-light); border-radius: 20px; color: #444; border: 1px solid var(--border); }
+  .pic-pill strong { color: var(--navy); }
+
+  /* Action table */
+  /* ── To Do Combined ── */
+  .tl-wrap {
+    background: var(--white); border: 1.5px solid #d0d8e8;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 4px 18px rgba(13,27,42,.10), 0 1px 4px rgba(0,0,0,.05);
+  }
+  .tl-head {
+    display: grid; grid-template-columns: 46px 1fr 120px 96px;
+    gap: 10px; padding: 10px 16px;
+    background: linear-gradient(90deg,#0d1b2a 0%,#1a2f4a 100%);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+  }
+  .tl-head span { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.6); }
+  .tl-head span:first-child { color: #fff; }
+  .tl-head span:nth-child(2) { color: #69c9d0; }
+  .tl-head span:last-child { text-align: right; }
+  .tl-row {
+    display: grid; grid-template-columns: 46px 1fr 120px 96px;
+    gap: 10px; align-items: center; padding: 10px 16px;
+    border-bottom: 1px solid #eaeef5;
+    border-left: 3px solid transparent;
+    transition: background .12s;
+  }
+  .tl-row:last-child { border-bottom: none; }
+  .tl-row:nth-child(even) { background: #f8fafd; }
+  .tl-row:hover { background: #eef4ff; }
+  .tl-row.row-hot  { border-left-color: #fab005; }
+  .tl-row.row-blue { border-left-color: #4dabf7; }
+  .tl-row.row-grn  { border-left-color: #51cf66; }
+  .tl-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; flex-shrink: 0;
+    margin: 0 auto;
+  }
+  .tl-task { font-size: 12px; color: #333; line-height: 1.5; }
+  .tl-task strong { color: var(--navy); font-weight: 700; }
+  .tl-task .sub { font-size: 11px; color: var(--gray); margin-top: 1px; }
+  .owner-pill {
+    font-size: 10px; font-weight: 700;
+    background: #e7f5ff; color: #1864ab;
+    padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+    display: inline-block;
+  }
+  .dl-chip { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; display: inline-block; float: right; }
+  .dl-hot  { background: #fff3bf; color: #7a4f00; }
+  .dl-blue-t { background: #e7f5ff; color: #1864ab; }
+  .dl-grn  { background: #d3f9d8; color: #1e6f3e; }
+
+  .no-data { font-size: 12px; color: var(--gray); padding: 4px 0; font-style: italic; }
+  .tag { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 20px; }
+  .tg { background: var(--green-light); color: var(--green); }
+  .tb { background: var(--blue-light); color: var(--blue); }
+  .ta { background: var(--yellow-light); color: var(--yellow); }
+  .tp { background: #f1f3f5; color: #495057; }
+
+  /* Footer */
+  .footer {
+    text-align: center; font-size: 11px; color: var(--gray);
+    padding: 24px 0 8px;
+    border-top: 1px solid var(--border);
+    margin-top: 16px;
+  }
+  .footer strong { color: var(--navy); }
+
+  /* ─── TABS (color-coded, no icons) ─── */
+  .tab-nav { display:flex; gap:4px; margin-bottom:20px; background:#fff; border-radius:12px; padding:6px; box-shadow:0 2px 8px rgba(0,0,0,.06); border:1px solid var(--border); position: sticky; top: 10px; z-index: 50; flex-wrap: wrap; }
+  .tab-btn {
+    flex:1; min-width:110px; text-align:center; padding:11px 10px; border-radius:9px; cursor:pointer;
+    font-size:11.5px; font-weight:800; letter-spacing:.02em; text-transform:uppercase;
+    color:#6c757d; background:transparent; border:none; transition:.15s; user-select:none;
+    display:flex; align-items:center; justify-content:center; gap:7px;
+  }
+  .tab-btn .dot { width:8px; height:8px; border-radius:2px; background:currentColor; opacity:.45; flex-shrink:0; transition:.15s; }
+  .tab-btn:hover { background:#f4f4f8; color:#1a1a2e; }
+  .tab-btn.active { color:#1a1a2e; background:#f4f4f8; }
+  .tab-btn.active .dot { opacity:1; }
+  .tab-btn[data-c="navy"] { color:var(--navy); }
+  .tab-btn[data-c="navy"].active { box-shadow:inset 0 -3px 0 var(--navy); }
+  .tab-btn[data-c="blue"] { color:var(--blue); }
+  .tab-btn[data-c="blue"].active { box-shadow:inset 0 -3px 0 var(--blue); }
+  .tab-btn[data-c="green"] { color:var(--green); }
+  .tab-btn[data-c="green"].active { box-shadow:inset 0 -3px 0 var(--green); }
+  .tab-btn[data-c="yellow"] { color:var(--yellow); }
+  .tab-btn[data-c="yellow"].active { box-shadow:inset 0 -3px 0 var(--yellow); }
+  .tab-btn[data-c="red"] { color:var(--red); }
+  .tab-btn[data-c="red"].active { box-shadow:inset 0 -3px 0 var(--red); }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ─── GENERIC DATA TABLE (Decision Log + GMV/Ads table) ─── */
+  .dlog-card{background:#fff;border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-bottom:18px;box-shadow:0 1px 2px rgba(17,22,29,.04)}
+  .dlog-scroll{overflow-x:auto}
+  .dlog-bar{background:var(--navy);color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:10px 14px}
+  table.dt{width:100%;min-width:880px;border-collapse:collapse}
+  table.dt th{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--gray);text-align:left;padding:13px 14px;border-bottom:1px solid var(--border);background:#FAFBFC;white-space:nowrap}
+  table.dt th.r{text-align:right}
+  table.dt th.c-gmv{background:#e7f0fb}
+  table.dt th.c-ads{background:#fdf0e0}
+  table.dt td{padding:12px 14px;border-bottom:1px solid #f1f1f6;font-size:12.5px;vertical-align:top;color:#1a1a2e}
+  table.dt td.r{text-align:right;font-family:ui-monospace,monospace;font-weight:700}
+  table.dt td.c-gmv{background:#f3f8fe}
+  table.dt td.c-ads{background:#fef8ef}
+  table.dt tr:last-child td{border-bottom:none}
+  table.dt tr:hover td{background:#fbfbfd}
+  table.dt tr:hover td.c-gmv{background:#eaf2fc}
+  table.dt tr:hover td.c-ads{background:#fdf2e2}
+  table.dt tr.total-row td{background:#eef1f5!important;font-weight:800;border-top:2px solid var(--navy)}
+  .idc{font-family:ui-monospace,monospace;font-weight:800;font-size:11.5px;color:var(--navy)}
+  .typ{font-family:ui-monospace,monospace;font-size:9.5px;font-weight:800;padding:3px 7px;border-radius:5px;letter-spacing:.03em;white-space:nowrap}
+  .typ-cir{background:#ffe3e3;color:#c92a2a}
+  .typ-sub{background:#d3f9d8;color:#2b8a3e}
+  .typ-content{background:#d3f9d8;color:var(--green)}
+  .typ-ads{background:#dbeafe;color:#1864ab}
+  .camp-chip{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:#eef1f5;color:#3b4655;margin:1px 2px 1px 0;white-space:nowrap}
+  .own-chip{display:inline-block;font-size:10.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:#eef1f5;color:#3b4655;margin:1px 3px 1px 0;white-space:nowrap}
+  .stt{font-size:10px;font-weight:800;padding:4px 9px;border-radius:6px;white-space:nowrap;display:inline-block}
+  .stt-open{background:#eef1f5;color:#3b4655}
+  .stt-prog{background:#fff3bf;color:#7a4f00}
+  .stt-pend{background:#ffe3e3;color:var(--red)}
+  .stt-done{background:#d3f9d8;color:var(--green)}
+  .dlog-legend{padding:13px 18px;font-size:11.5px;color:var(--gray);border-top:1px solid var(--border);background:#fbfbfd;line-height:1.7}
+  .dlog-section-title{display:flex;align-items:center;gap:10px;background:#010101;border-radius:10px;padding:11px 18px;margin-bottom:12px;margin-top:22px;position:relative;overflow:hidden}
+  .dlog-section-title .bar{position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#69c9d0 0%,#fe2c55 100%);border-radius:10px 0 0 10px}
+  .dlog-section-title .ic{background:linear-gradient(135deg,#69c9d0 0%,#fe2c55 100%);color:#fff;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+  .dlog-section-title .t{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:#fff}
+  .dlog-section-title .cnt{margin-left:auto;font-size:10px;font-weight:700;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;padding:3px 12px;border-radius:20px}
+  .ach{font-weight:800}
+  .ach-good{color:var(--green)} .ach-watch{color:var(--yellow)} .ach-bad{color:var(--red)}
+  .dash{color:#adb5bd}
+
+  /* ═══ CAMPAIGN DETAILS (redesigned GMV/Ads table) ═══ */
+  .cd-card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px;box-shadow:0 2px 10px rgba(17,22,29,.06)}
+  /* Run-rate control bar */
+  .cd-ctrl{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:linear-gradient(135deg,#0d1b2a 0%,#1a2f4a 100%);padding:13px 18px}
+  .cd-ctrl-lbl{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#69c9d0;display:flex;align-items:center;gap:7px}
+  .cd-ctrl select{font-family:inherit;font-size:12.5px;font-weight:700;color:#0d1b2a;background:#fff;border:none;border-radius:7px;padding:6px 12px;cursor:pointer;outline:none}
+  .cd-pace-track{flex:1;min-width:180px;background:rgba(0,0,0,.32);border-radius:7px;height:24px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18)}
+  .cd-pace-fill{height:100%;border-radius:7px;background:linear-gradient(90deg,#69c9d0,#4ec9d4);display:flex;align-items:center;padding-left:10px;font-size:11.5px;font-weight:800;color:#0d1b2a;transition:width .3s ease;white-space:nowrap}
+  .cd-pace-note{font-size:12px;color:#fff;font-weight:800;white-space:nowrap}
+  .cd-pace-note .big{font-size:15px;color:#69c9d0}
+  /* table */
+  .cd-scroll{overflow-x:auto}
+  table.cd{width:100%;min-width:1240px;border-collapse:collapse}
+  table.cd th.st, table.cd td.st{text-align:center;width:32px;font-size:13px;padding:10px 4px;}
+  table.cd th{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;text-align:right;padding:11px 12px;border-bottom:none;background:#2b3648;white-space:nowrap;vertical-align:bottom}
+  table.cd th.l{text-align:left}
+  /* sub-header cells lấy nền màu theo block */
+  table.cd thead tr:nth-child(2) th{font-size:9.5px;padding:9px 10px;color:#3b4655;background:#eef1f5;border-bottom:2px solid #cdd5e2;}
+  table.cd th.grp-gmv{background:#1971c2;color:#fff;text-align:center;border-bottom:none;font-size:11px;letter-spacing:.08em;}
+  table.cd th.grp-ads{background:#e8590c;color:#fff;text-align:center;border-bottom:none;font-size:11px;letter-spacing:.08em;}
+  table.cd th.grp-pace{background:#6741d9;color:#fff;text-align:center;border-bottom:none;font-size:11px;letter-spacing:.08em;}
+  table.cd thead tr:nth-child(2) th.c-gmv{background:#e7f0fb;color:#1864ab;border-bottom-color:#a5d8ff;}
+  table.cd thead tr:nth-child(2) th.c-ads{background:#fdecde;color:#b35900;border-bottom-color:#ffc078;}
+  table.cd thead tr:nth-child(2) th.c-pace{background:#efe9fb;color:#5f3dc4;border-bottom-color:#d0bfff;}
+  table.cd td{padding:10px 12px;border-bottom:1px solid #f1f1f6;font-size:12px;color:#1a1a2e;text-align:right;font-variant-numeric:tabular-nums}
+  table.cd td.l{text-align:left;font-weight:700}
+  table.cd td.num{font-family:ui-monospace,'SF Mono',monospace;font-weight:600}
+  table.cd td.c-gmv{background:#f5f9fe}
+  table.cd td.c-ads{background:#fef9f1}
+  table.cd td.c-pace{background:#f8f6ff}
+  table.cd tr:hover td{background:#fbfcfe}
+  table.cd tr:hover td.c-gmv{background:#eef5fd}
+  table.cd tr:hover td.c-ads{background:#fdf3e7}
+  table.cd tr:hover td.c-pace{background:#f1ecfe}
+  table.cd tr.cd-total td{background:linear-gradient(180deg,#dfe5ef,#eef1f5)!important;font-weight:900;border-top:2.5px solid #0d1b2a;border-bottom:2.5px solid #0d1b2a;color:#0d1b2a;}
+  table.cd tr.cd-total td.l{color:#0d1b2a;text-transform:uppercase;font-size:11.5px;letter-spacing:.03em;}
+  table.cd tr.cd-total td.num{color:#0d1b2a;}
+  /* phân block: viền trái màu theo service + đường kẻ đậm đầu block */
+  table.cd tr.blk-start td{border-top:2.5px solid #c3ccd9;}
+  table.cd tr td.blk-bar{border-left:4px solid var(--blk,#dde3ec);}
+  table.cd tr.cd-total td.blk-bar{border-left:4px solid var(--blk,#0d1b2a);}
+  /* brand cell */
+  .cd-brand{display:flex;align-items:center;gap:8px}
+  .cd-brand .typ{font-family:ui-monospace,monospace;font-size:9px;font-weight:800;padding:2px 6px;border-radius:4px;letter-spacing:.02em}
+  /* achieved pill with mini-bar */
+  .cd-ach{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end}
+  .cd-bar{width:46px;height:6px;border-radius:3px;background:#e9ecf2;overflow:hidden;flex-shrink:0}
+  .cd-bar i{display:block;height:100%;border-radius:3px}
+  .cd-pct{font-weight:800;min-width:42px;display:inline-block;text-align:right}
+  /* pace index badge */
+  .pidx{display:inline-flex;align-items:center;gap:5px;justify-content:flex-end;font-weight:800;padding:3px 9px;border-radius:20px;font-size:11.5px;white-space:nowrap;min-width:58px;justify-content:center}
+  .pidx-over{background:#d3f9d8;color:#1e6f3e;border:1px solid #8ce99a}
+  .pidx-ontrack{background:#e7f5ff;color:#1864ab;border:1px solid #a5d8ff}
+  .pidx-watch{background:#fff3bf;color:#b35900;border:1px solid #ffe066}
+  .pidx-behind{background:#ffe3e3;color:#c92a2a;border:1px solid #ffa8a8}
+  .pidx-na{background:#f1f3f5;color:#adb5bd;border:1px solid #e9ecef}
+  .cd-arrow{font-size:10px}
+  .cd-foot{padding:13px 18px;font-size:11px;color:var(--gray);border-top:1px solid var(--border);background:#fbfbfd;line-height:1.7}
+  .cd-grp{font-size:11px;color:#5f6b7a;font-weight:600}
+  .cd-pic-cell{white-space:nowrap}
+  .cd-pic{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;background:#e7f5ff;color:#1864ab;border:1px solid #d0ebff;white-space:nowrap}
+  .cd-foot b{color:var(--navy)}
+  .cd-legend-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+  .cd-legend-row .pidx{cursor:default}
+</style>
+
+</head>
+<body>
+<div class="container">
+
+<!-- ══ HEADER ══ -->
+<div class="rp-header">
+  <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:4px 14px 4px 10px;margin-bottom:12px;">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMCAyMCI+CiAgPHJlY3Qgd2lkdGg9IjMwIiBoZWlnaHQ9IjIwIiBmaWxsPSIjZGEyNTFkIi8+CiAgPHBvbHlnb24gcG9pbnRzPSIxNSwzLjUgMTYuNzYsOC45IDIyLjM2LDguOSAxNy44LDEyLjEgMTkuNTYsMTcuNSAxNSwxNC4zIDEwLjQ0LDE3LjUgMTIuMiwxMi4xIDcuNjQsOC45IDEzLjI0LDguOSIgZmlsbD0iI2ZmZmYwMCIvPgo8L3N2Zz4=" alt="🇻🇳" style="width:28px;height:19px;border-radius:3px;vertical-align:middle;">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;opacity:.9;">Vietnam</span>
+  </div>
+  <div class="rp-header-top">
+    <div>
+      <div class="rp-org">Ecomobi Media · TikTok Ads Performance</div>
+      <div class="rp-title"><span style="display:inline-block;background:linear-gradient(135deg,#69c9d0 0%,#fe2c55 100%);color:#fff;padding:5px 18px 6px;border-radius:20px;letter-spacing:.04em;font-size:20px;font-weight:800;">Weekly Meeting Report</span></div>
+    </div>
+    <div class="rp-badges">
+      <span class="rp-week">Tuần 24 · Jun'26</span>
+      <span class="rp-date">Kỳ: 11–17/06/2026 · cut-off 17/06 (Thứ 4)</span>
+    </div>
+  </div>
+  <div class="rp-divider"></div>
+  <div class="rp-meta">
+    <span class="rp-meta-item">Prepared by: <strong>Ads Team</strong></span>
+    <span class="rp-meta-item">Runrate Jun'26: <strong>17/30 ngày = 56.7%</strong><br><span style="font-size:10px;opacity:.6;font-weight:400;">* Số GMV/Ads cập nhật tới hết 17/06</span></span>
+  </div>
+</div>
+
+
+<div class="tab-nav">
+  <button class="tab-btn active" data-c="navy" onclick="showTab('tab-overview', this)"><span class="dot"></span>Overview</button>
+  <button class="tab-btn" data-c="green" onclick="showTab('tab-subaccount', this)"><span class="dot"></span>Sub Account</button>
+  <button class="tab-btn" data-c="red" onclick="showTab('tab-cir', this)"><span class="dot"></span>CIR</button>
+  <button class="tab-btn" data-c="blue" onclick="showTab('tab-ads', this)"><span class="dot"></span>Ads</button>
+  <button class="tab-btn" data-c="yellow" onclick="showTab('tab-hl', this)"><span class="dot"></span>Highlight/Lowlight</button>
+  <button class="tab-btn" data-c="navy" onclick="showTab('tab-dlog', this)"><span class="dot"></span>Decision Log &amp; Action</button>
+</div>
+
+<div id="tab-overview" class="tab-content active">
+<!-- ══ OVERVIEW TABLE ══ -->
+<div class="section" style="margin-bottom:1.5rem;">
+  <div class="section-header">
+    <div class="section-num">📊</div>
+    <div class="section-title">Campaign Overview</div>
+    <span style="margin-left:auto;font-size:11px;color:#fff;opacity:.85;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <span>📅 MTD: <strong>56.7%</strong> (17/30 ngày)</span>
+      <span style="opacity:.4;">|</span>
+      <span>✅ On track: Index <strong>≥ 90%</strong></span>
+      <span style="opacity:.4;">|</span>
+      <span>🔴 Off track: Index <strong>&lt; 75%</strong></span>
+    </span>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;" id="ov-panels"></div>
+</div>
+
+<!-- ══ GMV MIX DONUT CHARTS ══ -->
+<div class="section" style="margin-bottom:1.5rem;">
+  <div class="section-header">
+    <div class="section-num">🍩</div>
+    <div class="section-title">Tỉ trọng GMV theo Brand trong từng Service</div>
+  </div>
+  <div id="ov-donuts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;"></div>
+</div>
+
+<!-- ══ CAMPAIGN DETAILS (heatmap redesign) ══ -->
+<div class="section" style="margin-top:24px;">
+  <div class="section-header">
+    <div class="section-num">·</div>
+    <div class="section-title">Campaign Details — GMV &amp; Ads Cost vs Target &amp; Run-rate</div>
+  </div>
+  <div class="cd-card">
+    <div class="cd-ctrl">
+      <span class="cd-ctrl-lbl">📅 Run-rate tới ngày</span>
+      <select id="cdDaySel" onchange="cdRender()"></select>
+      <div class="cd-pace-track"><div class="cd-pace-fill" id="cdPaceFill" style="width:56.67%">56.7%</div></div>
+      <span class="cd-pace-note"><span class="big" id="cdPaceDay">17</span> / 30 ngày · benchmark <span id="cdPacePct">56.7%</span></span>
+    </div>
+    <div class="cd-scroll">
+      <table class="cd">
+        <thead>
+          <tr>
+            <th class="l" rowspan="2">Group</th>
+            <th class="l" rowspan="2">Brand</th>
+            <th class="l" rowspan="2">Service</th>
+            <th class="l" rowspan="2">PIC</th>
+            <th class="grp-gmv" colspan="4">GMV</th>
+            <th class="grp-ads" colspan="3">Ads Cost</th>
+            <th class="grp-pace" colspan="1">MTD</th>
+          </tr>
+          <tr>
+            <th class="c-gmv">Target</th><th class="c-gmv">Actual</th><th class="c-gmv">%Achieve</th><th class="c-gmv st">✓</th>
+            <th class="c-ads">%Ads<br>Target</th><th class="c-ads">%Ads<br>Actual</th><th class="c-ads st">✓</th>
+            <th class="c-pace" title="%Achieve GMV ÷ %Run-rate">Index<br>vs RR</th>
+          </tr>
+        </thead>
+        <tbody id="cdBody"></tbody>
+      </table>
+    </div>
+    <div class="cd-foot">
+      <div class="cd-legend-row">
+        <span class="pidx pidx-over">≥100% Vượt</span>
+        <span class="pidx pidx-ontrack">90–100% On-track</span>
+        <span class="pidx pidx-watch">75–90% Cần đẩy</span>
+        <span class="pidx pidx-behind">&lt;75% Behind</span>
+      </div>
+      <b>MTD Index</b> = %Achieve GMV ÷ %Run-rate (ngày đã chọn / 30). VD ngày 17 → RR = 56.7%.
+      &nbsp;|&nbsp; <b>%Achieve (Ads)</b> = Ads Actual / Ads Target. <b>Heatmap GMV</b>: xanh đậm = đạt cao, đỏ = thấp.
+      &nbsp;|&nbsp; Cột <b>✓</b>: ✅ đạt benchmark · ⚠️ cần đẩy · ❌ off-track. Đơn vị: tr = triệu VND.
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div id="tab-subaccount" class="tab-content">
+  <div class="pace-wrap" style="margin-bottom:16px;">
+    <span class="pace-label">📅 Runrate Jun'26</span>
+    <div class="pace-track"><div class="pace-fill" style="width:56.67%;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:800;color:#fff;">56.7%</div></div>
+    <span class="pace-note">17 / 30 ngày</span>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-num">1</div><div class="section-title">TSP Sub Account</div></div>
+    <div id="render-subaccount"></div>
+  </div>
+</div>
+
+<div id="tab-cir" class="tab-content">
+  <div class="pace-wrap" style="margin-bottom:16px;">
+    <span class="pace-label">📅 Runrate Jun'26</span>
+    <div class="pace-track"><div class="pace-fill" style="width:56.67%;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:800;color:#fff;">56.7%</div></div>
+    <span class="pace-note">17 / 30 ngày</span>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-num">2</div><div class="section-title">Campaign CIR</div></div>
+    <div id="render-cir"></div>
+  </div>
+</div>
+
+<div id="tab-ads" class="tab-content">
+  <div class="pace-wrap" style="margin-bottom:16px;">
+    <span class="pace-label">📅 Runrate Jun'26</span>
+    <div class="pace-track"><div class="pace-fill" style="width:56.67%;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:800;color:#fff;">56.7%</div></div>
+    <span class="pace-note">17 / 30 ngày</span>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-num">3</div><div class="section-title">Campaign Ads</div></div>
+    <div id="render-ads"></div>
+  </div>
+</div>
+
+<script>
+const OV_LOGO={
+  'MNY1':['maybelline.com','#c41230','M'],'MNY2':['maybelline.com','#c41230','M'],'MNY (CPD)':['maybelline.com','#c41230','M'],
+  'GNR (Sub)':['garnier.com','#5a9e3a','G'],'GNR (CPD)':['garnier.com','#5a9e3a','G'],
+  'Emmie':['__emmie__','#e8374a','Em'],
+  'Lifebuoy':['lifebuoy.com','#d32f2f','LB'],'Dove':['dove.com','#7b5ea7','D'],'Closeup':['closeup.com','#c8102e','Cl'],
+  'LRP':['laroche-posay.com','#0076a3','LRP'],'CRV':['cerave.com','#005eb8','CRV'],
+  'OAP':['lorealparis.com','#000','LP'],'3CE':['stylenanda.com','#f0a0b4','3CE'],'Old Spice':['oldspice.com','#1a237e','OS'],
+};
+function ovLogo(b,sz){
+  sz=sz||18;
+  const e=OV_LOGO[b]; if(!e) return '';
+  const [dom,col,ini]=e;
+  const av=`<span style="width:${sz}px;height:${sz}px;border-radius:4px;background:${col};display:inline-flex;align-items:center;justify-content:center;font-size:${sz*0.42}px;color:#fff;font-weight:700;flex-shrink:0;">${ini}</span>`;
+  if(dom==='__emmie__'){
+    // logo Emmie tự vẽ (chữ Emm nghiêng + chấm đỏ)
+    return `<span style="width:${sz}px;height:${sz}px;border-radius:4px;background:#fff;border:1px solid #eee;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;box-shadow:0 1px 3px rgba(0,0,0,.12);"><span style="font-family:Georgia,serif;font-style:italic;font-weight:700;font-size:${sz*0.4}px;color:#1a1a1a;">Em</span><span style="position:absolute;top:1px;right:1px;width:${sz*0.28}px;height:${sz*0.28}px;border-radius:50%;background:#e8374a;"></span></span>`;
+  }
+  if(dom){
+    const onerr="this.outerHTML="+JSON.stringify(av);
+    return `<img src="https://www.google.com/s2/favicons?domain=${dom}&sz=32" style="width:${sz}px;height:${sz}px;border-radius:4px;flex-shrink:0;" onerror='${onerr}'>`;
+  }
+  return av;
+}
+
+// ═══ DATA T24 (11–17/06), cut-off 17/06. GMV/Ads triệu VND. ROI = GMV Actual / Ads Cost Actual ═══
+const RR = 56.67; // runrate %
+const CAMP = {
+  // ── SUB ACCOUNT ──
+  subaccount: [
+    {tag:'I · CPD Sub Account', note:"L'Oreal Vietnam", group:'cpdsub'},
+    {brand:'MNY1', full:'Maybelline New York — MNY1', sub:'@Maybelline Makeup VN', logo:'maybelline.com', fb:'MNY', fbc:'#c41230',
+     gT:791.9, gA:24.8, adsA:15.6, roi:6.4, st:'off',
+     low:'Mất kênh — brand report bản quyền, chưa recover',
+     act:'Theo dõi sát timeline recover kênh từ brand'},
+    {brand:'MNY2', full:'Maybelline New York — MNY2', sub:'@Maybelline thư viện makeup', logo:'maybelline.com', fb:'MNY', fbc:'#c41230',
+     gT:289.7, gA:185.2, adsA:18.6, roi:5.4, st:'on',
+     high:'On track, cải thiện được tất cả chỉ số liên quan đến ads',
+     low:'Drop CTOR mức 2%, chưa thể kéo lên 4% so với plan',
+     act:'Kéo ROI 6; boost view creative; spend mạnh ở khung tối'},
+    {brand:'GNR (Sub)', full:'Garnier — GNR', sub:'@Garnier Miền Tây', logo:'garnier.com', fb:'GNR', fbc:'#00853f',
+     gT:450.0, gA:204.2, adsA:30.8, roi:3.3, st:'info',
+     high:'Cải thiện được GMV/hour nhưng vẫn còn off track so với plan',
+     low:'Kênh bị ban tới giờ vẫn chưa live lại được',
+     act:'Chờ mở kênh; tối ưu GMV/hour để bù khi live lại'},
+    {tag:'II · Emmie Sub Account', note:'', group:'emmie'},
+    {brand:'Emmie', full:'Emmié By Happyskin — Emmie', sub:'', logo:'', fb:'Emm', fbc:'#e8374a',
+     gT:408.8, gA:29.2, adsA:46.6, roi:2.1, st:'off',
+     overview:'Target tháng đầu đặt cao, số thực tế thấp hơn nhiều là dự kiến. Ads cost 46.6% còn cao.',
+     act:'Theo dõi ROI khi tăng budget; kiểm soát ads cost'},
+    {total:true, svc:'SUBACC', brand:'Total Sub Account', gT:1940.5, gA:443.3, adsA:25.9, roi:3.9,
+     note:'⚠️ Toàn nhóm Sub Account off track nặng (Index 40% MTD). MNY1 mất kênh, Emmie target tháng đầu cao. Chỉ MNY2 đang on-track. Cần ưu tiên recover MNY1 và kiểm soát ads cost Emmie.'},
+  ],
+  // ── CIR ──
+  cir: [
+    {tag:'1 · UPC', note:'Unilever Personal Care · Unilever', group:'upc'},
+    {brand:'Lifebuoy', full:'Lifebuoy', sub:'', logo:'lifebuoy.com', fb:'LBY', fbc:'#e31b23',
+     gT:1622.1, gA:1334.4, adsA:11.0, roi:9.1, st:'on',
+     high:'On track — loading vượt xa MTD, ROI cao nhất nhóm CIR',
+     act:'Duy trì playbook Peak + Mega; đảm bảo inventory ngày scale'},
+    {brand:'Dove', full:'Dove', sub:'', logo:'dove.com', fb:'DVE', fbc:'#7b5ea7',
+     gT:1144.5, gA:718.8, adsA:12.8, roi:7.8, st:'on',
+     high:'On track',
+     act:'Tối ưu luồng dẫn khách Video → Live để tăng chuyển đổi'},
+    {brand:'Closeup', full:'Closeup', sub:'', logo:'', fb:'close', fbc:'#00843d',
+     gT:1067.2, gA:468.6, adsA:16.7, roi:6.0, st:'info',
+     overview:'Loading cải thiện so với tuần trước, đã có actual; ads cost 16.7% cần theo dõi',
+     act:'Bổ sung video teasing; review phân bổ budget theo khung giờ'},
+    {total:true, svc:'CIR', brand:'Total UPC', gT:3833.8, gA:2521.8, adsA:12.6, roi:7.9,
+     note:'✅ UPC dẫn dắt CIR — Lifebuoy & Dove vượt MTD, ads cost 12.6% kiểm soát tốt. Closeup là điểm yếu duy nhất (loading 43.9%).'},
+    {tag:'2 · LDB', note:"L'Oreal Vietnam · CeraVe (CRV) & La Roche-Posay (LRP)", group:'ldb'},
+    {brand:'LRP', full:'La Roche-Posay — LRP', sub:'', logo:'laroche-posay.com', fb:'LRP', fbc:'#0076a3',
+     gT:644.0, gA:465.8, adsA:11.3, roi:8.8, st:'on',
+     high:'On track',
+     low:'% ads cost cao hơn target 2% vì testing ads nhiều; sau Pday sẽ keep ads để đảm bảo CIR',
+     act:'Scale ads 2 SKU: Chống nắng XL, UV; testing angle & back report cho team content'},
+    {brand:'CRV', full:'CeraVe — CRV', sub:'', logo:'cerave.com', fb:'CRV', fbc:'#005eb8',
+     gT:1503.0, gA:877.4, adsA:11.8, roi:8.5, st:'on',
+     high:'Vượt target 3 ngày SBD; Live aff % ads cost thấp; cải thiện số so với tuần trước; có SKU mới Sữa chống nắng (testing & scale nhẹ)',
+     low:'% ads cost cao hơn target 1% vì testing ads nhiều; sau Pday sẽ keep ads để đảm bảo CIR',
+     act:'Giảm ads cho angle có %ads cost cao; testing angle mới & back report cho SRM; scale 2 angle "Lành tính" + bản nâng cấp'},
+    {total:true, svc:'CIR', brand:'Total LDB', gT:2147.0, gA:1343.2, adsA:11.6, roi:8.6,
+     note:'🏆 LDB là nhóm sao của T24 — cả LRP & CRV đều vượt MTD, ROI 8.6 cao thứ 2. Sau Pday sẽ keep ads để đảm bảo CIR cuối tháng.'},
+    {tag:'3 · CPD', note:"L'Oreal Vietnam", group:'cpd'},
+    {brand:'OAP', full:"L'Oreal Paris — OAP", sub:'', logo:'', fb:'OAP', fbc:'#000',
+     gT:1141.7, gA:644.0, adsA:8.9, roi:11.2, st:'on',
+     overview:'ROI 11.2 cao nhất nhóm CPD; ads cost 8.9% rất tốt',
+     act:'Tiếp tục đẩy mạnh SKU: Cb tím → KCN → cb lẻ Tím'},
+    {brand:'MNY (CPD)', full:'Maybelline New York — MNY', sub:'', logo:'maybelline.com', fb:'MNY', fbc:'#c41230',
+     gT:2173.0, gA:900.8, adsA:14.4, roi:7.0, st:'info',
+     high:'Top contribution từ video T4 (31.8%), T9 (12.06%), T6 (14.19%). Top angle: Báo deal+Review 22.54%, Push sale 19.42%. Top KOL: chiecreview, noiha377, nghuwgg, khalac248',
+     low:'Các PID phụ có %ad cost cao; Phấn má & Lifter Gloss đang gánh số chính (contribute >30%)',
+     act:'Check video cũ ra đơn, focus video có ad cost <25% để scale GMV; ưu tiên set ads cho video NMV >200k để tránh tăng CIR'},
+    {brand:'GNR (CPD)', full:'Garnier — GNR', sub:'@Garnier Miền Tây', logo:'garnier.com', fb:'GNR', fbc:'#00853f',
+     gT:689.4, gA:433.0, adsA:12.0, roi:8.4, st:'on',
+     high:'Vẫn đang on track, khả năng về từ 90% target tháng',
+     act:'Keep ads cost ở ngày BAU; scale vào ngày sale có giá tốt'},
+    {brand:'3CE', full:'3CE', sub:'', logo:'stylenanda.com', fb:'3CE', fbc:'#f0a0b4',
+     gT:2195.3, gA:981.6, adsA:16.4, roi:6.1, st:'info',
+     high:'Top NMV từ video T3 (11.89%), T5 (30.63%), T6 (14.96%). Top angle: Push sale 24.25%, Báo deal+Review 19.56%. Top KOL: gialoi15, sansalede, thaosyn.1810, chunhungne',
+     low:'Video T6 chưa contribute tốt bằng T5 (GMV ~1/2 video T5); 3CE BLUSHLIGHTER có %ad cost rất cao (42%) — contribute 18tr NMV',
+     act:'Check video cũ ra đơn, focus video ad cost <25% để scale; ưu tiên set ads cho video NMV >200k (đặc biệt 3CE BLUSHLIGHTER) để tránh tăng CIR'},
+    {total:true, svc:'CIR', brand:'Total CPD', gT:6199.4, gA:2959.3, adsA:13.5, roi:7.4,
+     note:'⚠️ CPD chiếm GMV target lớn nhất nhưng đang off-track (84% MTD). OAP & GNR(CPD) on-track; MNY và 3CE cần đẩy. Focus video cũ ra đơn để scale GMV.'},
+  ],
+  // ── ADS ──
+  ads: [
+    {tag:'P&G — Ads Service', note:'Procter & Gamble', group:'oldspice'},
+    {brand:'Old Spice', full:'Old Spice', sub:'', logo:'oldspice.com', fb:'OLS', fbc:'#00205b',
+     gT:1057.8, gA:430.2, adsA:12.1, roi:8.3, st:'watch',
+     overview:'Loading 40.7% vs MTD 56.7% — đang off track ở các phiên Mega. Ads cost 12.1%, ROI 8.3.',
+     low:'Đang off track ở các phiên Mega',
+     act:'Breakdown target sang các ngày BAU để kéo performance'},
+  ],
+};
+
+const ST = {
+  on:   {cc:'cc-on',    sig:'sig-g', badge:'bon',   bt:'On track',            fill:'fill-g',  bg:'#f8fff9', bd:'#51cf66', tc:'#2b8a3e'},
+  info: {cc:'cc-info',  sig:'sig-y', badge:'binfo', bt:'Good but not on track',fill:'fill-lb', bg:'#f0f4ff', bd:'#74c0fc', tc:'#1971c2'},
+  watch:{cc:'cc-watch', sig:'sig-y', badge:'bwatch',bt:'Slightly off track',  fill:'fill-g',  bg:'#fff9db', bd:'#fab005', tc:'#e67700'},
+  off:  {cc:'cc-watch', sig:'sig-y', badge:'boff',  bt:'Off track',           fill:'fill-r',  bg:'#fff5f5', bd:'#ff6b6b', tc:'#c92a2a'},
+};
+
+function fM(v){ return v==null?'—':v.toLocaleString('en-US',{maximumFractionDigits:1})+'M'; }
+function pace(achGMV){ return achGMV==null?null:achGMV/RR*100; }
+
+function logoHTML(c){
+  // ưu tiên dùng ovLogo (có logo Emmie tự vẽ) — kích thước 26px cho card
+  const ov = ovLogo(c.brand, 26);
+  if(ov) return ov.replace('border-radius:4px','border-radius:7px');
+  if(c.logo){
+    return `<img class="brand-logo" src="https://www.google.com/s2/favicons?domain=${c.logo}&sz=64" onerror="this.outerHTML='<span class=\\'brand-avatar\\' style=\\'background:${c.fbc}\\'>${c.fb}</span>'" alt="${c.brand}">`;
+  }
+  return `<span class="brand-avatar" style="background:${c.fbc}">${c.fb}</span>`;
+}
+
+function totalCardHTML(t){
+  // t: {brand, gT, gA, adsA, roi, svc, group, note}
+  const RR=56.67;
+  const ach = (t.gT && t.gA!=null) ? t.gA/t.gT*100 : null;
+  const idx = ach==null ? null : ach/RR*100;
+  const gapM = ach==null ? null : (t.gT*RR/100 - t.gA);
+  // màu theo service
+  const SVCCOL = {SUBACC:{bg:'#e6f7ec',bd:'#40c057',tc:'#2b8a3e',lbl:'Sub Account'},
+                  CIR:{bg:'#fff0f0',bd:'#fa5252',tc:'#c92a2a',lbl:'CIR'},
+                  ADS:{bg:'#e7f0fb',bd:'#4dabf7',tc:'#1864ab',lbl:'Ads'}};
+  const s = SVCCOL[t.svc] || SVCCOL.CIR;
+  // status badge
+  const stBadge = idx==null ? '' : (idx>=100?`<span style="background:#d3f9d8;color:#2b8a3e;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;">▲ ${idx.toFixed(0)}% MTD</span>`
+    : idx>=90?`<span style="background:#d0ebff;color:#1864ab;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;">▲ ${idx.toFixed(0)}% MTD</span>`
+    : idx>=75?`<span style="background:#fff3bf;color:#b35900;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;">▼ ${idx.toFixed(0)}% MTD</span>`
+    : `<span style="background:#ffe3e3;color:#c92a2a;font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;">▼ ${idx.toFixed(0)}% MTD</span>`);
+  const fillCol = idx==null?'#ced4da':(idx>=100?'#51cf66':idx>=90?'#74c0fc':idx>=75?'#fab005':'#ff6b6b');
+  const fillW = ach==null?0:Math.min(100,ach);
+  return `<div style="background:linear-gradient(180deg,#fff,${s.bg});border:2px solid ${s.bd};border-radius:14px;padding:16px 18px;margin:18px 0 10px;box-shadow:0 3px 14px ${s.bd}33;position:relative;">
+    <div style="position:absolute;top:-9px;left:18px;background:${s.bd};color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;">📊 TOTAL · ${s.lbl}</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+      <span style="font-size:15px;font-weight:900;color:${s.tc};text-transform:uppercase;letter-spacing:.04em;">${t.brand}</span>
+      ${stBadge}
+      ${t.roi!=null?`<span style="background:#fff;border:1.5px solid ${s.bd};color:${s.tc};font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;">ROI ${t.roi}</span>`:''}
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid ${s.bd}44;margin-bottom:10px;">
+      <div><div style="font-size:9px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">GMV Actual</div><div style="font-size:16px;color:#1a1a2e;font-weight:900;">${t.gA==null?'—':t.gA.toLocaleString('en-US',{maximumFractionDigits:1})+'M'}</div></div>
+      <div><div style="font-size:9px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">GMV Target</div><div style="font-size:16px;color:#1a1a2e;font-weight:900;">${t.gT.toLocaleString('en-US',{maximumFractionDigits:1})}M</div></div>
+      <div><div style="font-size:9px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">%Ads Actual</div><div style="font-size:16px;color:${t.adsA>15?'#c92a2a':t.adsA>13?'#b35900':'#2b8a3e'};font-weight:900;">${t.adsA==null?'—':t.adsA+'%'}</div></div>
+      <div><div style="font-size:9px;color:#888;font-weight:700;text-transform:uppercase;letter-spacing:.05em;">ROI</div><div style="font-size:16px;color:${t.roi>=8?'#2b8a3e':t.roi<5?'#c92a2a':'#b35900'};font-weight:900;">${t.roi==null?'—':t.roi}</div></div>
+    </div>
+    <div style="margin-bottom:6px;display:flex;justify-content:space-between;font-size:11px;">
+      <span style="color:#666;font-weight:700;">Loading vs Target</span>
+      <span style="color:#1a1a2e;font-weight:800;">Actual ${t.gA==null?'—':t.gA.toFixed(0)+'M'} / Target ${t.gT.toFixed(0)}M</span>
+    </div>
+    <div style="position:relative;height:22px;background:#e9ecef;border-radius:5px;overflow:hidden;">
+      <div style="height:100%;width:${fillW}%;background:${fillCol};display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:800;color:#fff;">${ach==null?'—':ach.toFixed(1)+'%'}</div>
+      <div style="position:absolute;top:-3px;bottom:-3px;left:${RR}%;width:2px;background:#1a1a2e;"></div>
+      <div style="position:absolute;top:-13px;left:${RR}%;transform:translateX(-50%);font-size:9px;font-weight:800;color:#1a1a2e;white-space:nowrap;">MTD ${RR.toFixed(1)}%</div>
+    </div>
+    ${gapM!=null?`<div style="margin-top:8px;font-size:11px;color:${gapM>0?'#c92a2a':'#2b8a3e'};font-weight:700;">${gapM>0?`⚠️ Gap to MTD: +${gapM.toFixed(1)}M cần thêm để đúng pace`:`✅ Vượt MTD: +${(-gapM).toFixed(1)}M`}</div>`:''}
+    ${t.note?`<div style="margin-top:8px;padding:8px 12px;background:#fff;border-left:3px solid ${s.bd};border-radius:0 6px 6px 0;font-size:11.5px;color:#333;line-height:1.6;">${t.note}</div>`:''}
+  </div>`;
+}
+
+function cardHTML(c){
+  const s = ST[c.st] || ST.info;
+  const achGMV = (c.gT && c.gA!=null) ? c.gA/c.gT*100 : null;
+  const pidx = pace(achGMV);
+  const fillW = achGMV==null?0:Math.min(100,achGMV);
+  // gap vs MTD
+  let gapHTML='';
+  if(achGMV!=null){
+    const need = c.gT*RR/100 - c.gA; // M cần thêm để đạt MTD
+    if(need>0) gapHTML = `<div style="font-size:10px;margin-top:3px;color:#c92a2a;font-weight:700;">⚠️ Gap to MTD: <strong>+${need.toFixed(1)}M</strong> cần thêm</div>`;
+    else gapHTML = `<div style="font-size:10px;margin-top:3px;color:#2b8a3e;font-weight:700;">✅ Vượt MTD: <strong>+${(-need).toFixed(1)}M</strong></div>`;
+  }
+  // kpi row
+  let kpis = `<div class="kpi"><span class="kpi-lbl">GMV Actual</span><span class="kpi-val">${c.gA==null?'<span style=\'color:#adb5bd\'>Chưa cập nhật</span>':c.gA.toLocaleString('en-US',{maximumFractionDigits:1})+'M'}</span></div>
+    <div class="kpi"><span class="kpi-lbl">GMV Target</span><span class="kpi-val">${c.gT.toLocaleString('en-US',{maximumFractionDigits:1})}M</span></div>
+    <div class="kpi"><span class="kpi-lbl">Ads cost</span><span class="kpi-val${c.adsA>20?' w':(c.adsA<=13?' g':'')}">${c.adsA==null?'—':c.adsA+'%'}</span></div>
+    <div class="kpi"><span class="kpi-lbl">ROI</span><span class="kpi-val${c.roi>=8?' g':(c.roi<4?' w':'')}">${c.roi==null?'—':c.roi}</span></div>`;
+  // body: overview / high / low / action
+  let body='';
+  if(c.overview) body += `<div><div class="col-lbl">Overview</div><div class="hl">${c.overview}</div></div><div class="divv"></div>`;
+  let hlList='';
+  if(c.high) hlList += `<div class="hl-li" style="color:#2b8a3e;">✅ ${c.high}</div>`;
+  if(c.low)  hlList += `<div class="hl-li" style="color:#c92a2a;">⚠️ ${c.low}</div>`;
+  if(!c.high && !c.low && !c.overview) hlList += `<div class="hl-li" style="color:#adb5bd;">— Chưa có highlight/lowlight tuần này</div>`;
+  body += `<div><div class="col-lbl">Highlights / Lowlights</div><div class="hl">${hlList}</div></div>`;
+  // action box
+  const actBox = c.act ? `<div style="margin-top:10px;padding:10px 14px;background:${s.bg};border-left:3px solid ${s.bd};border-radius:0 8px 8px 0;">
+      <div style="font-size:11px;font-weight:800;color:${s.tc};text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">⚡ Next Action</div>
+      <div style="font-size:12px;color:#333;line-height:1.7;">${c.act}</div>
+    </div>` : '';
+
+  return `<div class="camp-card ${s.cc}">
+    <div class="cc-top">
+      <span class="sig ${s.sig}"></span>
+      <span class="cc-name">${logoHTML(c)}${c.full}${c.sub?` <span style="font-size:11px;font-weight:500;color:#888;margin-left:4px;">${c.sub}</span>`:''}</span>
+      <span class="cc-date">T24</span>
+      <span class="badge ${s.badge}">${s.bt}</span>
+      ${c.roi!=null?`<span class="badge ${c.roi>=8?'broi-over':(c.roi<4?'broi-under':'broi-up')}">ROI ${c.roi}</span>`:''}
+    </div>
+    <div class="kpi-row">${kpis}</div>
+    <div class="prog-wrap" style="margin-top:4px;">
+      <div class="prog-meta"><span class="prog-lbl">Loading target</span><span class="prog-nums"><strong>Actual ${fM(c.gA)}</strong> / Target ${c.gT.toLocaleString('en-US',{maximumFractionDigits:1})}M</span></div>
+      <div class="prog-track"><div class="prog-fill ${s.fill}" style="width:${fillW}%;">${achGMV==null?'—':achGMV.toFixed(1)+'%'}</div><div class="pace-marker" style="left:${RR}%;"></div><span class="prog-right">/ 100%</span></div>
+      ${gapHTML}
+    </div>
+    <div class="cc-body">${body}</div>
+    ${actBox}
+  </div>`;
+}
+
+function renderCamps(key, mountId){
+  let html='';
+  CAMP[key].forEach(item=>{
+    if(item.tag){
+      html += `<div class="l1-tag" style="margin-top:14px;">${item.tag}${item.note?` <span style="opacity:.6;font-weight:500;">— ${item.note}</span>`:''}</div>`;
+    } else if(item.total){
+      html += totalCardHTML(item);
+    } else {
+      html += cardHTML(item);
+    }
+  });
+  document.getElementById(mountId).innerHTML = html;
+}
+renderCamps('subaccount','render-subaccount');
+renderCamps('cir','render-cir');
+renderCamps('ads','render-ads');
+</script>
+
+
+<div id="tab-hl" class="tab-content">
+<div class="section">
+  <div class="section-header"><div class="section-num">1</div><div class="section-title">✅ Highlights</div></div>
+  <div class="signal-card">
+    <div class="sc-icon">🏆</div>
+    <div class="sc-content">
+      <div class="sc-top"><span class="sc-name">LRP (LDB · CIR)</span><span class="badge bon">Loading 72.3%</span><span class="badge bon">ROI 8.8</span></div>
+      <div class="sc-note">On track, vượt MTD mạnh nhất; đang scale 2 SKU chống nắng XL & UV</div>
+    </div>
+  </div>
+  <div class="signal-card">
+    <div class="sc-icon">🚀</div>
+    <div class="sc-content">
+      <div class="sc-top"><span class="sc-name">MNY2 (CPD Sub Account)</span><span class="badge bon">Loading 63.9%</span><span class="badge bon">ROI 5.4</span></div>
+      <div class="sc-note">On track, cải thiện toàn bộ chỉ số ads; gánh số bù cho MNY1 đang mất kênh</div>
+    </div>
+  </div>
+  <div class="signal-card">
+    <div class="sc-icon">💪</div>
+    <div class="sc-content">
+      <div class="sc-top"><span class="sc-name">CRV (LDB · CIR)</span><span class="badge bon">Loading 58.4%</span><span class="badge bon">ROI 8.5</span></div>
+      <div class="sc-note">Vượt target 3 ngày SBD, Live aff ads cost thấp; có SKU mới Sữa chống nắng đang testing & scale nhẹ</div>
+    </div>
+  </div>
+  <div class="signal-card">
+    <div class="sc-icon">📈</div>
+    <div class="sc-content">
+      <div class="sc-top"><span class="sc-name">OAP (CPD · CIR)</span><span class="badge bon">ROI 11.2</span><span class="badge bon">Ads 8.9%</span></div>
+      <div class="sc-note">ROI cao nhất toàn portfolio, ads cost thấp nhất — đẩy mạnh combo Tím → KCN</div>
+    </div>
+  </div>
+  <div class="signal-card">
+    <div class="sc-icon">🌟</div>
+    <div class="sc-content">
+      <div class="sc-top"><span class="sc-name">Lifebuoy (UPC · CIR)</span><span class="badge bon">Loading 82.3%</span><span class="badge bon">ROI 9.1</span></div>
+      <div class="sc-note">On track, loading cao nhất nhóm CIR — playbook Peak + Mega phát huy tốt</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header"><div class="section-num">2</div><div class="section-title">⚠️ Lowlights</div></div>
+  <div class="issue-wrap">
+    <div class="issue-item">
+      <span class="issue-icon">📵</span>
+      <strong>Mất kênh / bị ban (MNY1 Sub, GNR Sub)</strong> — MNY1 chỉ đạt 3.1% (mất kênh, gap -424M); GNR Sub kênh bị ban tới giờ vẫn chưa live lại được.
+    </div>
+    <div class="issue-item">
+      <span class="issue-icon">💸</span>
+      <strong>Ads cost cao do testing (Emmie, LRP, CRV)</strong> — Emmie 46.6% (target tháng đầu cao); LRP/CRV cao hơn target 1–2% vì testing ads nhiều, sẽ keep ads sau Pday để đảm bảo CIR.
+    </div>
+    <div class="issue-item">
+      <span class="issue-icon">🎬</span>
+      <strong>Content cũ gánh số (MNY CPD, 3CE)</strong> — Video T6 chưa contribute tốt bằng T5; SKU ad cost cao: 3CE BLUSHLIGHTER (42%), MNY Phấn má & Lifter Gloss (>30%).
+    </div>
+    <div class="issue-item">
+      <span class="issue-icon">🛒</span>
+      <strong>Off track phiên Mega (Old Spice)</strong> — Loading 40.7% vs MTD 56.7%; sẽ breakdown target sang ngày BAU để kéo performance.
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div id="tab-dlog" class="tab-content">
+
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">📋 Decision Log &amp; Action — Giai đoạn Mega (10–16/06)</div>
+  </div>
+  <div class="dlog-card"><div class="dlog-scroll">
+    <table class="dt">
+      <thead><tr><th>ID</th><th>Type</th><th>Campaign</th><th>Decision / Next Step</th><th>Owner</th><th>Action</th><th>Due</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+  <td class="idc">ADS-01</td>
+  <td><span class="typ typ-ads">ADS</span></td>
+  <td><span class="camp-chip">LDB</span></td>
+  <td>Scale Mid Month &amp; SBD — tập trung tối đa ngân sách, không underdeliver</td>
+  <td><span class="own-chip">PIC Campaign</span></td>
+  <td>LDB ưu tiên 500 video mới chiếm thị phần nội dung</td>
+  <td class="idc">16/06</td>
+  <td><span class="stt stt-prog">In progress</span></td>
+</tr><tr>
+  <td class="idc">SUB-02</td>
+  <td><span class="typ typ-sub">SUBACC</span></td>
+  <td><span class="camp-chip">Sub Account</span></td>
+  <td>Toàn bộ camp Sub Account chạy ads theo Plan View &amp; CPV đã thống nhất</td>
+  <td><span class="own-chip">PIC Campaign</span></td>
+  <td>Monitor CPV thực tế vs plan, điều chỉnh nếu lệch &gt;10%</td>
+  <td class="idc">Ongoing</td>
+  <td><span class="stt stt-prog">In progress</span></td>
+</tr><tr>
+  <td class="idc">SUB-03</td>
+  <td><span class="typ typ-sub">SUBACC</span></td>
+  <td><span class="camp-chip">MNY1</span></td>
+  <td>Tách Account MNY1 — xử lý bay kênh, tách riêng Sub Acc ổn định vận hành</td>
+  <td><span class="own-chip">LinhTK</span></td>
+  <td>Tách account, kiểm tra lại portfolio MNY</td>
+  <td class="idc">19/06</td>
+  <td><span class="stt stt-pend">Pending</span></td>
+</tr>
+      </tbody>
+    </table>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">🚀 New Launch &amp; Onboarding</div>
+  </div>
+  <div class="dlog-card"><div class="dlog-scroll">
+    <table class="dt">
+      <thead><tr><th>ID</th><th>Type</th><th>Campaign</th><th>Decision / Next Step</th><th>Owner</th><th>Action</th><th>Due</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+  <td class="idc">LAU-04</td>
+  <td><span class="typ typ-sub">SUBACC</span></td>
+  <td><span class="camp-chip">3CE</span></td>
+  <td>New Launch — 3CE Sub Account</td>
+  <td><span class="own-chip">Chip</span></td>
+  <td>Setup &amp; go-live kênh 3CE standalone</td>
+  <td class="idc">17/06</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr><tr>
+  <td class="idc">LAU-05</td>
+  <td><span class="typ typ-sub">SUBACC</span></td>
+  <td><span class="camp-chip">OAP</span></td>
+  <td>New Launch — OAP (L'Oréal Paris) Sub Account</td>
+  <td><span class="own-chip">Na</span></td>
+  <td>Setup &amp; go-live kênh OAP standalone</td>
+  <td class="idc">Upcoming</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr><tr>
+  <td class="idc">LAU-06</td>
+  <td><span class="typ typ-sub">SUBACC</span></td>
+  <td><span class="camp-chip">Mistine</span></td>
+  <td>New Launch — Mistine Sub Account</td>
+  <td><span class="own-chip">Nhiên</span></td>
+  <td>Lên kế hoạch onboarding kênh Mistine</td>
+  <td class="idc">Jul'26</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr><tr>
+  <td class="idc">LAU-07</td>
+  <td><span class="typ typ-ads">ADS</span></td>
+  <td><span class="camp-chip">Ads Team</span></td>
+  <td>New PIC Ads — onboard Minh Hà G1</td>
+  <td><span class="own-chip">Hà</span></td>
+  <td>Đào tạo &amp; phân bổ campaign cho PIC mới</td>
+  <td class="idc">05/07</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr>
+      </tbody>
+    </table>
+  </div></div>
+</div>
+
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">🔧 Post-Mega &amp; Plan Jul'26</div>
+  </div>
+  <div class="dlog-card"><div class="dlog-scroll">
+    <table class="dt">
+      <thead><tr><th>ID</th><th>Type</th><th>Campaign</th><th>Decision / Next Step</th><th>Owner</th><th>Action</th><th>Due</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+  <td class="idc">OPT-08</td>
+  <td><span class="typ typ-ads">ADS</span></td>
+  <td><span class="camp-chip">All Campaigns</span></td>
+  <td>Sau Mega — tối ưu lại ads cost, review hiệu quả từng campaign</td>
+  <td><span class="own-chip">PIC Campaign</span></td>
+  <td>Historical review &amp; key takeaway → input cho plan Jul'26</td>
+  <td class="idc">17/06+</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr><tr>
+  <td class="idc">OPT-09</td>
+  <td><span class="typ typ-ads">ADS</span></td>
+  <td><span class="camp-chip">All Campaigns</span></td>
+  <td>Plan Ads Jul'26 — Break by Day</td>
+  <td><span class="own-chip">KhoaTT</span></td>
+  <td>Template report all camp + key insight, chuẩn hoá format báo cáo hàng tháng</td>
+  <td class="idc">25/06</td>
+  <td><span class="stt stt-open">Open</span></td>
+</tr><tr>
+  <td class="idc">OPT-10</td>
+  <td><span class="typ typ-ads">ADS</span></td>
+  <td><span class="camp-chip">All Campaigns</span></td>
+  <td>Plan Ads Jun'26 — Break by Day</td>
+  <td><span class="own-chip">KhoaTT</span></td>
+  <td>Đã chạy xong toàn bộ campaign Sub Account</td>
+  <td class="idc">—</td>
+  <td><span class="stt stt-done">Done</span></td>
+</tr>
+      </tbody>
+    </table>
+    <div class="dlog-legend">
+      <b>Quy ước:</b> <span class="typ typ-cir">CIR</span> <span class="typ typ-sub">SUBACC</span> <span class="typ typ-ads">ADS</span> <span class="typ typ-content">CONTENT</span> theo nhóm phụ trách ·
+      Status: <span class="stt stt-open">Open</span> chưa bắt đầu · <span class="stt stt-prog">In progress</span> đang chạy · <span class="stt stt-pend">Pending</span> chờ xử lý · <span class="stt stt-done">Done</span> hoàn tất.
+    </div>
+  </div></div>
+</div>
+</div>
+
+<div class="footer">
+<div class="footer">
+  <strong>Ecomobi Media</strong> · TikTok Ads Performance &nbsp;·&nbsp; <strong>Tuần 24 Jun'26 (11–17/06)</strong> &nbsp;·&nbsp; Data cut-off 17/06/2026 (Thứ 4) &nbsp;·&nbsp; Prepared by Ads Team
+</div>
+
+</div>
+
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+</script>
+
+<script>
+// ═══ OVERVIEW DATA T24 (11–17/06) · RR 56.7% · GMV/Ads triệu VND ═══
+const OV_RR = 56.67;
+const OV = [
+  // svc: nhóm service hiển thị | grp: group | brand | gT | gA | adsT% | adsA% | pic
+  {svc:'SUBACC', grp:'CPD Sub', brand:'MNY1',      pic:'Thục Nhiên',        gT:791.9,  gA:24.8,   adsT:12.8, adsA:15.6},
+  {svc:'SUBACC', grp:'CPD Sub', brand:'MNY2',      pic:'Thục Nhiên',        gT:289.7,  gA:185.2,  adsT:15.3, adsA:18.6},
+  {svc:'SUBACC', grp:'CPD Sub', brand:'GNR (Sub)', pic:'Linh Phan · Chi',   gT:450.0,  gA:204.2,  adsT:25.0, adsA:30.8},
+  {svc:'SUBACC', grp:'Emmie',   brand:'Emmie',     pic:'Linh Phan · Chi',   gT:408.8,  gA:29.2,   adsT:20.5, adsA:46.6},
+  {svc:'SUBACC', grp:'—',       brand:'Total Sub Account', pic:'', gT:1940.5, gA:443.3, adsT:null, adsA:25.9, total:true},
+
+  {svc:'CIR', grp:'UPC', brand:'Lifebuoy', pic:'—',          gT:1622.1, gA:1334.4, adsT:13.0, adsA:11.0},
+  {svc:'CIR', grp:'UPC', brand:'Dove',     pic:'Thục Nhiên', gT:1144.5, gA:718.8,  adsT:13.0, adsA:12.8},
+  {svc:'CIR', grp:'UPC', brand:'Closeup',  pic:'Chip',       gT:1067.2, gA:468.6,  adsT:12.0, adsA:16.7},
+  {svc:'CIR', grp:'UPC', brand:'Total UPC', pic:'', gT:3833.8, gA:2521.8, adsT:19.3, adsA:12.6, total:true},
+
+  {svc:'CIR', grp:'LDB', brand:'LRP', pic:'Thục Nhiên', gT:644.0,  gA:465.8, adsT:9.7,  adsA:11.3},
+  {svc:'CIR', grp:'LDB', brand:'CRV', pic:'Thục Nhiên', gT:1503.0, gA:877.4, adsT:10.9, adsA:11.8},
+  {svc:'CIR', grp:'LDB', brand:'Total LDB', pic:'', gT:2147.0, gA:1343.2, adsT:10.5, adsA:11.6, total:true},
+
+  {svc:'CIR', grp:'CPD', brand:'OAP',       pic:'—',             gT:1141.7, gA:644.0,  adsT:11.5, adsA:8.9},
+  {svc:'CIR', grp:'CPD', brand:'MNY (CPD)', pic:'—',             gT:2173.0, gA:900.8,  adsT:11.5, adsA:14.4},
+  {svc:'CIR', grp:'CPD', brand:'GNR (CPD)', pic:'Linh Phan · Chi', gT:689.4, gA:433.0, adsT:11.5, adsA:12.0},
+  {svc:'CIR', grp:'CPD', brand:'3CE',       pic:'—',             gT:2195.3, gA:981.6,  adsT:11.5, adsA:16.4},
+  {svc:'CIR', grp:'CPD', brand:'Total CPD',  pic:'', gT:6199.4, gA:2959.3, adsT:11.5, adsA:13.5, total:true},
+
+  {svc:'ADS', grp:'Old Spice', brand:'Old Spice', pic:'Linh Phan · Chi', gT:1057.8, gA:430.2, adsT:10.0, adsA:12.1},
+];
+const TYP = {SUBACC:'typ-sub', CIR:'typ-cir', ADS:'typ-ads'};
+const SVC_LABEL = {SUBACC:'Sub Account', CIR:'CIR', ADS:'Ads'};
+// logo brand dùng chung: [domain, màu fallback, initials, isEmmie]
+
+function fmtM(v){ return v==null?'—':v.toLocaleString('en-US',{maximumFractionDigits:1}); }
+function achOf(r){ return (r.gT && r.gA!=null) ? r.gA/r.gT*100 : null; }
+function idxOf(r){ const a=achOf(r); return a==null?null:a/OV_RR*100; }
+function achAdsOf(r){ return (r.adsT && r.adsA!=null) ? r.adsT/r.adsA*100 : null; } // target/actual: thấp actual = tốt
+
+// heatmap màu theo %achieve (0..100 → đỏ→vàng→xanh)
+function heatBg(p){
+  if(p==null) return 'transparent';
+  const x=Math.max(0,Math.min(100,p))/100;
+  // 0=đỏ(255,107,107) 0.5=vàng(255,212,59) 1=xanh(81,207,102)
+  let r,g,b;
+  if(x<0.5){ const t=x/0.5; r=255; g=Math.round(107+(212-107)*t); b=Math.round(107+(59-107)*t); }
+  else { const t=(x-0.5)/0.5; r=Math.round(255+(81-255)*t); g=Math.round(212+(207-212)*t); b=Math.round(59+(102-59)*t); }
+  return `rgba(${r},${g},${b},.42)`;
+}
+// ads: actual vs target, actual<=target → tốt (xanh), vượt nhiều → đỏ
+function adsHeatBg(r){
+  if(r.adsT==null||r.adsA==null) return 'transparent';
+  const ratio = r.adsA/r.adsT; // <=1 tốt
+  if(ratio<=1.0) return 'rgba(81,207,102,.38)';
+  if(ratio<=1.15) return 'rgba(255,212,59,.40)';
+  return 'rgba(255,107,107,.42)';
+}
+function statusIcon(idx){
+  if(idx==null) return '<span style="color:#ced4da">—</span>';
+  if(idx>=90) return '✅';
+  if(idx>=75) return '⚠️';
+  return '❌';
+}
+function adsIcon(r){
+  if(r.adsT==null||r.adsA==null) return '<span style="color:#ced4da">—</span>';
+  return r.adsA<=r.adsT ? '✅' : (r.adsA<=r.adsT*1.15?'⚠️':'❌');
+}
+function pidxClass(idx){
+  if(idx==null) return 'pidx-na';
+  if(idx>=100) return 'pidx-over';
+  if(idx>=90) return 'pidx-ontrack';
+  if(idx>=75) return 'pidx-watch';
+  return 'pidx-behind';
+}
+
+// ─── BẢNG DETAILS (heatmap) ───
+function cdRender(){
+  const day=parseInt(document.getElementById('cdDaySel').value,10);
+  const rr=day/30*100;
+  document.getElementById('cdPaceFill').style.width=rr.toFixed(2)+'%';
+  document.getElementById('cdPaceFill').textContent=rr.toFixed(1)+'%';
+  document.getElementById('cdPaceDay').textContent=day;
+  document.getElementById('cdPacePct').textContent=rr.toFixed(1)+'%';
+  let html='';
+  const BLKCOL={SUBACC:'#40c057', CIR:'#fa5252', ADS:'#4dabf7'};
+  // viền trái block theo SERVICE để nhất quán (Sub=lá, CIR=đỏ, Ads=dương)
+  const GRPCOL={};
+  let prevGrp=null;
+  OV.forEach((r,i)=>{
+    const ach=achOf(r);
+    const idx=(ach==null)?null:ach/rr*100;
+    const typCls=TYP[r.svc]||'typ-cir';
+    const blkCol=BLKCOL[r.svc]||'#dde3ec';
+    // block start: khi group đổi (và không phải total — total đóng block)
+    const isNewBlk = (r.grp!==prevGrp) && !r.total;
+    prevGrp = r.total ? null : r.grp;
+    const rowCls=(r.total?'cd-total':'')+(isNewBlk?' blk-start':'');
+    const stIcon = (idx==null)?'<span style="color:#ced4da">—</span>':(idx>=90?'✅':(idx>=75?'⚠️':'❌'));
+    html+=`<tr class="${rowCls.trim()}" style="--blk:${blkCol}">
+      <td class="l cd-grp blk-bar"><span style="font-weight:800;color:#3b4655;">${r.grp||'—'}</span></td>
+      <td class="l cd-brandcell">${r.total?`<span style="font-weight:900;">${r.brand}</span>`:`<span style="display:inline-flex;align-items:center;gap:7px;">${ovLogo(r.brand,18)}<span style="font-weight:800;color:#15191f;">${r.brand}</span></span>`}</td>
+      <td class="l"><span class="typ ${typCls}">${SVC_LABEL[r.svc]||r.svc}</span></td>
+      <td class="l cd-pic-cell">${r.pic?`<span class="cd-pic">${r.pic}</span>`:''}</td>
+      <td class="num c-gmv">${fmtM(r.gT)} tr</td>
+      <td class="num c-gmv">${fmtM(r.gA)} tr</td>
+      <td class="num" style="background:${heatBg(ach)};font-weight:800;">${ach==null?'—':ach.toFixed(1)+'%'}</td>
+      <td class="st" style="background:${heatBg(ach)}">${stIcon}</td>
+      <td class="num c-ads">${r.adsT==null?'—':r.adsT+'%'}</td>
+      <td class="num" style="background:${adsHeatBg(r)};font-weight:700;">${r.adsA==null?'—':r.adsA+'%'}</td>
+      <td class="st">${adsIcon(r)}</td>
+      <td class="c-pace"><span class="pidx ${pidxClass(idx)}">${idx==null?'—':(idx>=100?'▲':'▼')+idx.toFixed(0)+'%'}</span></td>
+    </tr>`;
+  });
+  document.getElementById('cdBody').innerHTML=html;
+}
+(function(){
+  const sel=document.getElementById('cdDaySel');let o='';
+  for(let d=1;d<=30;d++) o+=`<option value="${d}"${d===17?' selected':''}>Ngày ${d}/06</option>`;
+  sel.innerHTML=o; cdRender();
+})();
+
+// ─── PANELS On track / Off track (data-driven) ───
+function ovPanels(){
+  const NOTE={
+    'Lifebuoy':'🏆 Loading cao nhất CIR, ROI 9.1','LRP':'🚀 Vượt MTD mạnh nhất, scale 2 SKU KCN',
+    'MNY2':'✅ Cải thiện toàn bộ ads, gánh bù MNY1','GNR (CPD)':'✅ On track, về ~90% target tháng',
+    'Dove':'📈 On track ổn định','CRV':'💪 Vượt target 3 ngày SBD, có SKU mới',
+    'OAP':'⭐ ROI 11.2 cao nhất, ads 8.9%','GNR (Sub)':'📊 Cải thiện GMV/hour, kênh chưa live lại',
+    '3CE':'⚠️ Video T6 chưa contribute bằng T5','Closeup':'⚠️ Đã có actual, ads cost 16.7% cần theo dõi',
+    'MNY1':'🚫 Mất kênh — chưa recover','Emmie':'📉 Target tháng đầu cao, ads cost 46.6%',
+    'Old Spice':'🛒 Off track phiên Mega, breakdown sang BAU','MNY (CPD)':'🎬 PID phụ ads cost cao, content cũ gánh số',
+  };
+  // logo domain + fallback màu theo brand
+  function logo(b){ return ovLogo(b,18); }
+  // thứ tự group ưu tiên
+  const GORDER={'UPC':1,'CPD':2,'LDB':3,'CPD Sub':4,'Emmie':5,'Old Spice':6,'—':9};
+  const GRP={SUBACC:'Sub Acc', CIR:'CIR', ADS:'Ads'};
+  const items=OV.filter(r=>!r.total && achOf(r)!=null).map(r=>({...r,ach:achOf(r),idx:idxOf(r)}));
+  const sortG=(a,b)=>((GORDER[a.grp]||8)-(GORDER[b.grp]||8))||(b.ach-a.ach);
+  const onAll=items.filter(r=>r.idx>=75).sort(sortG);
+  const offT=items.filter(r=>r.idx<75).sort(sortG);
+  const row=(r,alt,good)=>`<div style="display:grid;grid-template-columns:1fr 90px 44px 52px 1.05fr;align-items:center;padding:6px 14px;border-bottom:1px solid ${good?'#f0fdf4':'#fff0f0'};${alt?(good?'background:#f8fff9;':'background:#fff9f9;'):''}">
+    <div style="display:flex;align-items:center;gap:7px;min-width:0;">
+      ${logo(r.brand)}
+      <span style="font-size:12px;font-weight:700;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.brand}</span>
+    </div>
+    <span style="font-size:10px;color:#777;">${r.grp} · ${GRP[r.svc]}</span>
+    <span style="font-size:12px;font-weight:800;text-align:right;color:${good?'#2b8a3e':'#c92a2a'};">${r.ach.toFixed(1)}%</span>
+    <span style="font-size:11px;font-weight:800;text-align:right;color:${r.idx>=100?'#2b8a3e':r.idx>=75?'#e67700':'#c92a2a'};">${r.idx>=100?'▲':'▼'}${r.idx.toFixed(0)}%</span>
+    <span style="font-size:10px;color:#888;padding-left:10px;">${NOTE[r.brand]||''}</span>
+  </div>`;
+  const hdr=(good)=>`<div style="display:grid;grid-template-columns:1fr 90px 44px 52px 1.05fr;padding:5px 14px;background:${good?'#f2fbf4':'#fff5f5'};border-bottom:1px solid ${good?'#d3f9d8':'#ffe3e3'};">
+    <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;">Brand</span>
+    <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;">Type</span>
+    <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;text-align:right;">Load</span>
+    <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;text-align:right;">%MTD</span>
+    <span style="font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;padding-left:10px;">Note</span>
+  </div>`;
+  const html=`
+  <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #b2f2bb;box-shadow:0 3px 14px rgba(47,158,68,.13);">
+    <div style="background:linear-gradient(90deg,#2f9e44,#40c057);padding:10px 16px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:13px;">✅</span><span style="color:#fff;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;">On Track</span>
+      <span style="margin-left:auto;background:rgba(255,255,255,.22);color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;">${onAll.length} camps</span>
+    </div>${hdr(true)}<div style="padding:4px 0;">${onAll.map((r,i)=>row(r,i%2,true)).join('')}</div>
+  </div>
+  <div style="background:#fff;border-radius:14px;overflow:hidden;border:1.5px solid #ffa8a8;box-shadow:0 3px 14px rgba(201,42,42,.12);">
+    <div style="background:linear-gradient(90deg,#c92a2a,#e03131);padding:10px 16px;display:flex;align-items:center;gap:8px;">
+      <span style="font-size:13px;">❌</span><span style="color:#fff;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;">Off Track</span>
+      <span style="margin-left:auto;background:rgba(255,255,255,.22);color:#fff;font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;">${offT.length} camps</span>
+    </div>${hdr(false)}<div style="padding:4px 0;">${offT.map((r,i)=>row(r,i%2,false)).join('')}</div>
+  </div>`;
+  document.getElementById('ov-panels').innerHTML=html;
+}
+ovPanels();
+
+// ─── DONUT charts: tỉ trọng GMV brand trong mỗi service ───
+function donutSVG(data, total){
+  const cx=80,cy=80,r=62,rin=36;
+  let acc=0; let paths=''; let labels='';
+  data.forEach(d=>{
+    const frac=d.val/total; const a0=acc*2*Math.PI-Math.PI/2; const amid=(acc+frac/2)*2*Math.PI-Math.PI/2; acc+=frac; const a1=acc*2*Math.PI-Math.PI/2;
+    const large=frac>0.5?1:0;
+    const x0=cx+r*Math.cos(a0), y0=cy+r*Math.sin(a0), x1=cx+r*Math.cos(a1), y1=cy+r*Math.sin(a1);
+    const xi0=cx+rin*Math.cos(a1), yi0=cy+rin*Math.sin(a1), xi1=cx+rin*Math.cos(a0), yi1=cy+rin*Math.sin(a0);
+    paths+=`<path d="M${x0} ${y0} A${r} ${r} 0 ${large} 1 ${x1} ${y1} L${xi0} ${yi0} A${rin} ${rin} 0 ${large} 0 ${xi1} ${yi1} Z" fill="${d.color}"/>`;
+    // % label trong lát nếu đủ lớn (>=7%)
+    if(frac>=0.07){
+      const lr=(r+rin)/2; const lx=cx+lr*Math.cos(amid), ly=cy+lr*Math.sin(amid);
+      labels+=`<text x="${lx}" y="${ly+3}" text-anchor="middle" font-size="9.5" font-weight="800" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.25);stroke-width:.5px;">${(frac*100).toFixed(0)}%</text>`;
+    }
+  });
+  return `<svg viewBox="0 0 160 160" width="150" height="150">${paths}${labels}
+    <text x="80" y="76" text-anchor="middle" font-size="10" fill="#888" font-weight="600">GMV</text>
+    <text x="80" y="91" text-anchor="middle" font-size="13" fill="#1a1a2e" font-weight="800">${total.toLocaleString('en-US',{maximumFractionDigits:0})}M</text></svg>`;
+}
+function ovDonuts(){
+  const PAL=['#1971c2','#2f9e44','#e8590c','#7048e8','#0c8599','#f08c00','#c2255c','#495057'];
+  // buckets: Sub Account (gộp), CIR tách theo group UPC/LDB/CPD, Ads
+  const buckets=[
+    {key:'Sub Account', typ:'typ-sub', filt:r=>r.svc==='SUBACC'},
+    {key:'CIR · UPC',   typ:'typ-cir', filt:r=>r.svc==='CIR'&&r.grp==='UPC'},
+    {key:'CIR · LDB',   typ:'typ-cir', filt:r=>r.svc==='CIR'&&r.grp==='LDB'},
+    {key:'CIR · CPD',   typ:'typ-cir', filt:r=>r.svc==='CIR'&&r.grp==='CPD'},
+    {key:'Ads',         typ:'typ-ads', filt:r=>r.svc==='ADS'},
+  ];
+  let html='';
+  buckets.forEach(bk=>{
+    const arr=OV.filter(r=>!r.total && r.gA!=null && bk.filt(r));
+    if(!arr.length) return;
+    const tot=arr.reduce((s,r)=>s+r.gA,0);
+    const data=arr.map((r,i)=>({label:r.brand,val:r.gA,color:PAL[i%PAL.length]})).sort((a,b)=>b.val-a.val);
+    const legend=data.map(d=>`<div style="display:flex;align-items:center;gap:6px;font-size:11px;margin-bottom:4px;">
+      <span style="width:9px;height:9px;border-radius:2px;background:${d.color};flex-shrink:0;"></span>
+      ${ovLogo(d.label,16)}
+      <span style="flex:1;color:#333;font-weight:600;">${d.label}</span>
+      <span style="color:#1a1a2e;font-weight:800;">${(d.val/tot*100).toFixed(1)}%</span>
+      <span style="color:#999;font-size:10px;width:50px;text-align:right;">${d.val.toFixed(0)}M</span>
+    </div>`).join('');
+    // 1 brand: hiển thị gọn không cần donut, có logo
+    const chart = data.length>1 ? donutSVG(data,tot)
+      : `<div style="width:150px;height:150px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:${data[0].color}1a;border-radius:50%;border:3px solid ${data[0].color};gap:4px;"><div style="transform:scale(1.4);margin-bottom:2px;">${ovLogo(data[0].label,28)}</div><span style="font-size:10px;color:#888;font-weight:600;">GMV</span><span style="font-size:15px;color:#1a1a2e;font-weight:800;">${tot.toFixed(0)}M</span></div>`;
+    html+=`<div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(17,22,29,.05);">
+      <div style="font-size:12px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:flex;align-items:center;gap:7px;">
+        <span class="typ ${bk.typ}" style="font-size:9px;padding:2px 7px;">${bk.key.split(' · ')[0]}</span> ${bk.key}
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <div style="flex-shrink:0;">${chart}</div>
+        <div style="flex:1;min-width:140px;">${legend}</div>
+      </div>
+    </div>`;
+  });
+  document.getElementById('ov-donuts').innerHTML=html;
+}
+ovDonuts();
+</script>
+
+</body>
+</html>
