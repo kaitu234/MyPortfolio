@@ -1,0 +1,11 @@
+# Chỉ track file deploy cho GitHub Pages; bỏ qua toàn bộ file nháp/nguồn
+/*
+!/.gitignore
+!/README.md
+!/index.html
+!/en.html
+!/work/
+# trong work/ chỉ giữ 2 trang case-study
+/work/*
+!/work/closeup-diagnosis.html
+!/work/tiktok-weekly-report.html
